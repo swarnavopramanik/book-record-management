@@ -1,0 +1,19 @@
+{
+  "name": "book-record-management",
+  "version": "1.0.0",
+  "description": "Book record management server build with node.js and express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swarnavopramanik/book-record-management.git"
+  },
+  "author": "Swarnavo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swarnavopramanik/book-record-management/issues"
+  },
+  "homepage": "https://github.com/swarnavopramanik/book-record-management#readme"
+}
