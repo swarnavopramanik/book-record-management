@@ -1,4 +1,3 @@
-
 #book-record-management
 
 This is a book record management API Backend for the management of records and books
@@ -7,13 +6,13 @@ This is a book record management API Backend for the management of records and b
 
 ## /users
 
-Post: Create a new user
-GET: GET all list of users
+Post: Create a new user ✅
+GET: GET all list of users ✅
 
 ## /users/{ id}
 
-GET: GET a user by id
-PUT: Update a user by id
+GET: GET a user by id ✅
+PUT: Update a user by id ✅
 DELETE: Delete a user by id (check if he/she still has an issued book)(is there any fine to be paid)
 
 ## /users/subscription-details/{id}
