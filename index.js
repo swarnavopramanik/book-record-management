@@ -1,6 +1,7 @@
 const express = require("express");
-// JSON data import 
-const {users} = require('./data/users.json');
+// importing routes 
+const userRouter = require("./routes/user");
+const booksRouter = require("./routes/books");
 
 const app = express();
 
@@ -13,6 +14,10 @@ app.get("/", (req, res) => {
     message: "Server is up and running",
   });
 });
+
+app.use("/users", userRouter);
+app.use("/books", booksRouter);
+
 
 /**
  * Route: /users
@@ -50,9 +55,9 @@ app.get("/", (req, res) => {
 });
 
 /**
- * Route: /users
+ * Route: /users:/id
  * Method: POST
- * Description: Create new user
+ * Description : Create new user 
  * Access: Public
  * Parameters: none
  */
@@ -114,6 +119,34 @@ app.put("/users/:id", (req, res) => {
     data: updatedUser,
   });
 });
+
+
+
+/**
+ * Route: /users/:id
+ * Method: DELETE
+ * Description : Delete a user by id 
+ * Access: Public
+ * Parameters: none
+ */
+ app.delete("/users/:id", (req, res) => {
+  const { id } = req.params;
+  const user = users.find((each) => each.id === id);
+
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: "User to be deleted was not found",
+    });
+  }
+
+  const index = users.indexOf(user);
+  users.splice(index, 1);
+
+  return res.status(202).json({ success: true, data: users });
+});
+
+
 app.get("*", (req, res) => {
   res.status(404).json({
     message: "This route does not exist",

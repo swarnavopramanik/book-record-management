@@ -33,11 +33,11 @@ POST: Create/Add a new book
 GET: Get a book by id
 PUT/PATCH: update a book by id
 
-## /books/issued
+## /books/issued/by-user
 
 GET: Get all issued books
 
-## /books/issued/withFine
+## /books/issued/books
 
 GET: Get all issued books with fine
 
