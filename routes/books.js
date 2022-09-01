@@ -1,3 +1,4 @@
+const { response } = require("express");
 const express = require("express");
 const { books } = require("../data/books.json");
 const { users } = require("../data/users.json");
@@ -77,5 +78,85 @@ router.get("/issued/by-user", (req,res) => {
     })
 });
 
+/**
+ * Route: /books
+ * Method: POST 
+ * Description : Create new book
+ * Access: Public
+ * Parameters: none
+ * Data : author, name , genre , price , publisher, id
+ */
+
+router.post("/", (req,res) => {
+    const{data} = req.body;
+
+    if (!data) {
+        return res.status(400).json({
+            success: false,
+            massage: "No data prrovided",
+        });
+    }
+
+    const book = books.find((each) => each.id == data.id);
+
+    if(book){
+        return res.status(404).json({
+            success: false,
+            massage: "Book already exists with id, please use a unique id",
+        });
+    }
+
+    const allBooks = [...books, data];
+
+    return res.status(201).json({
+        success: true,
+        data: allBooks,
+    });
+
+});
+
+/**
+ * Route: /books/:id
+ * Method:  PUT 
+ * Description : Update book 
+ * Access: Public
+ * Parameters: id
+ * Data : author, name , genre , price , publisher, id
+ */
+
+router.put("/:id", (req,res) => {
+    const {id} = req.params;
+    const {data} = req.body;
+
+    const book = books.find((each) => each.id == id);
+
+    if(!book) {
+        return res.status(400).json({
+            success: false,
+            massage: "Book not found with this particular id",
+        });
+    }
+
+    const updateData = books.map((each) => {
+        if (each.id == id) {
+            return {...each, ...data};
+        }
+        return each;
+    });
+
+    return res.status(200).json({
+        success: true,
+        data: updateData,
+    });
+});
+
+/**
+ * Route: /books/issued/books
+ * Method:GET
+ * Description : Get all issued books
+ * Access: Public
+ * Parameters: none
+ */
+ 
 // default export 
 module.exports = router;
