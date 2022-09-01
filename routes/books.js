@@ -106,7 +106,7 @@ router.post("/", (req,res) => {
         });
     }
 
-    const allBooks = [...books, data];
+    const allBooks = [...books, data];  // books contains all the books imported and ,data added the data of the book in the body to it
 
     return res.status(201).json({
         success: true,
@@ -136,7 +136,7 @@ router.put("/:id", (req,res) => {
             massage: "Book not found with this particular id",
         });
     }
-
+//we found the book so updating
     const updateData = books.map((each) => {
         if (each.id == id) {
             return {...each, ...data};
@@ -151,12 +151,22 @@ router.put("/:id", (req,res) => {
 });
 
 /**
- * Route: /books/issued/books
- * Method:GET
- * Description : Get all issued books
- * Access: Public
- * Parameters: none
+ * Route : /books/id
+ * Methord used PUT
+ * Discrition : Update Existing Book
+ * Access : Public
+ * Parameters : Author, Name ,Genre, Prise, Publisher, id.
  */
+
+ router.get("/issued/withfine", (req, res) => {});
+
+ router.get("*", (req, res) => {
+   res.status(400).json({
+     success: false,
+     massage: "This routes does not exist",
+   });
+ });
+ 
  
 // default export 
 module.exports = router;
