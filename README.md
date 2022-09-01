@@ -1,8 +1,10 @@
-#book-record-management
+#book-record-management 😶‍🌫️👻
 
-This is a book record management API Backend for the management of records and books
+image.png 🧑‍💻😎😎🎈🎇
 
-#Routes and Endpoints
+This is a book record management API Backend for the management of records and books ✅✅
+
+#Routes and Endpoints ✌️
 
 ## /users
 
@@ -13,39 +15,41 @@ GET: GET all list of users ✅
 
 GET: GET a user by id ✅
 PUT: Update a user by id ✅
-DELETE: Delete a user by id (check if he/she still has an issued book)(is there any fine to be paid)
+DELETE: Delete a user by id (check if he/she still has an issued book)(is there any fine to be paid) ✅
 
 ## /users/subscription-details/{id}
 
-GET:Get user subscription details
+GET:Get user subscription details ✅
 
-1. Date of subscription
-2. valid till
-3. Fine if any
+1. Date of subscription ✅
+2. valid till ✅
+3. Fine if any ✅
 
 ## /books
 
-GET: Get all book
-POST: Create/Add a new book
+GET: Get all book ✅
+POST: Create/Add a new book ✅
 
 ## /books/{id}
 
-GET: Get a book by id
-PUT/PATCH: update a book by id
+GET: Get a book by id ✅
+PUT/PATCH: update a book by id ✅
 
 ## /books/issued/by-user
 
-GET: Get all issued books
+GET: Get all issued books ✅
 
 ## /books/issued/books
 
 GET: Get all issued books with fine
 
-# Subscription Types
+# Subscription Types 👇
 
 Basic(3 months)
 Standard (6 months)
 Premium (12 months)
+
+Note: dates will be in format mm/dd/yyyy
 
 if the subsription date is 01/08/22
 and Subscription type is Standard
