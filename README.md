@@ -1,6 +1,6 @@
 #book-record-management 😶‍🌫️👻
 
-image.png 🧑‍💻😎😎🎈🎇
+🧑‍💻😎😎🎈🎇
 
 This is a book record management API Backend for the management of records and books ✅✅
 
@@ -41,7 +41,7 @@ GET: Get all issued books ✅
 
 ## /books/issued/books
 
-GET: Get all issued books with fine
+GET: Get all issued books with fine ✅
 
 # Subscription Types 👇
 

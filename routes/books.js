@@ -42,7 +42,7 @@ router.get("/:id", (req,res) => {
 });
 
 /**
- * Route: /books/issue/by-user
+ * Route: /books/issued/by-user
  * Method:GET
  * Description : Get all issued books
  * Access: Public
@@ -150,23 +150,63 @@ router.put("/:id", (req,res) => {
     });
 });
 
+
 /**
- * Route : /books/id
- * Methord used PUT
- * Discrition : Update Existing Book
- * Access : Public
- * Parameters : Author, Name ,Genre, Prise, Publisher, id.
+ * Route: /books/issued/with-fine
+ * Method: GET
+ * Description: Get issued books with fine
+ * Access: Public
+ * Parameters: none
  */
 
- router.get("/issued/withfine", (req, res) => {});
+ router.get("/issued/with-fine", (req, res) => {
+    const usersWithIssuedBooksWithFine = users.filter((each) => {
+        if (each.issuedBook) return each;
+    });
 
- router.get("*", (req, res) => {
-   res.status(400).json({
-     success: false,
-     massage: "This routes does not exist",
-   });
- });
- 
+    const issuedBooksWithFine = [];
+
+    usersWithIssuedBooksWithFine.forEach((each) => {
+        const book = books.find((book) => book.id === each.issuedBook);
+
+        book.issuedBy = each.name;
+        book.issuedDate = each.issuedDate;
+        book.returnDate = each.returnDate;
+
+
+        const getDateInDays = (data = "") => {
+            let date;
+            if (data == "") {
+                date = new Date();
+            } else {
+                date = new Date(data);
+            }
+            let days = Math.floor(date / (1000 * 60 * 60 * 24)); //1000 is for milliseconds
+            return days;
+        };
+
+        let returnDate = getDateInDays(each.returnDate);
+
+        let currentDate = getDateInDays();
+
+        if (returnDate < currentDate) {
+            issuedBooksWithFine.push(book);
+        }
+    });
+
+    if (issuedBooksWithFine.length === 0) {
+        return res.status(404).json({
+            Success: false,
+            Message: "No books which have fine",
+        });
+    }
+
+    return res.status(200).json({
+        Success: true,
+        Message: "Issued Books List which have fine",
+        Data: issuedBooksWithFine,
+    })
+});
  
 // default export 
 module.exports = router;
